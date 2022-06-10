@@ -1,4 +1,7 @@
+
+
 const Municipio = require('../models/municipio.model');
+const User = require('../models/user.model');
 
 const isMunInDep = async(req, res) =>{
 
@@ -10,6 +13,20 @@ const isMunInDep = async(req, res) =>{
     }
 }
 
+
+
+const userExist = async( username ) => {
+
+    // VALIDAR SI EL REGISTRO EXISTE
+    const user = await User.findOne({where: {username: username}}); 
+    
+    if( user ) {
+        throw new Error(`El nombre de usuario ${username} ya está registrado`);
+    }
+
+}
+
 module.exports = {
-    isMunInDep
+    isMunInDep,
+    userExist
 }
