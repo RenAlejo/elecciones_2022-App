@@ -9,7 +9,7 @@ const { validationResult } = require('express-validator');
  * @returns 
  */
 
-const validateFields = ( req, res, next ) => {
+const isFieldEmpty = ( req, res, next ) => {
 
     const errors = validationResult(req);
 
@@ -23,5 +23,5 @@ const validateFields = ( req, res, next ) => {
 
 
 module.exports = {
-    validateFields
+    isFieldEmpty
 };
