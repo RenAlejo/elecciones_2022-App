@@ -1,8 +1,11 @@
+const Departamento = require('../models/departamento.model');
 
-const departamentosGet = (req,res) => {
-    res.json({
-        msg:"get API"
-    });
+
+const departamentosGet = async (req,res) => {
+
+    const departamentos =  await Departamento.findAll();
+    res.json({departamentos});
+    
 }
 
 module.exports = {

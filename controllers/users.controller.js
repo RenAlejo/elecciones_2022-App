@@ -1,17 +1,30 @@
+const User = require('../models/user.model');
+const bcryptjs = require('bcryptjs');
+const validator =  require('express-validator');
 
-const usersGet = (req,res) => {
+const getUsers = async (req,res) => {
 
-    const { user,password } = req.query;
-
-    res.json({
-        msg:"get API",
-        user,
-        password
-    });
+    const users = await User.findAll();
+    res.json({users});
 }
 
 
-const usersPut = (req,res) => {
+const getUser = async (req,res) => {
+
+    const { id } = req.params;
+    const user = await User.findByPk( id );
+
+    if(!user){
+        res.status(404).json({
+            msg: `No existe un usuario con el id ${id}`
+        })
+    }
+
+    res.json({user});
+}
+
+
+const putUser = (req,res) => {
 
     const { id } = req.params;
 
@@ -22,19 +35,36 @@ const usersPut = (req,res) => {
 }
 
 
-const usersPost = (req,res) => {
+const postUser = async (req,res) => {
 
-    const {user,password} = req.body;
+    const {username, password  } = req.body;
+    const user = new User({username,password});
+
+    // VALIDAR NOMBRE DE USUARIO
+    const userExist = await User.findOne({ username }); 
+
+    if(userExist){
+       return  res.status(400).json({
+            msg:"El usuario ya existe en la base de datos",
+        });
+    }
+
+    // ENCRIPTAR CONTRASENA
+    const salt =  bcryptjs.genSaltSync();
+    user.password = bcryptjs.hashSync( password, salt );
+    
+    // GUARDAR USUARIO 
+    await user.save();
 
     res.json({
-        msg:"post API",
-        user,
-        password
+        msg:"Usuario creado con exito",
     });
+
 }
 
 module.exports = {
-    usersGet,
-    usersPut,
-    usersPost
+    getUsers,
+    getUser,
+    putUser,
+    postUser
 }

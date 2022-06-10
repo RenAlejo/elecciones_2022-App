@@ -1,10 +1,11 @@
+const Municipio = require('../models/municipio.model');
 
-const municipiosGet = (req,res) => {
-    res.json({
-        msg:"get API"
-    });
+const municipiosGet = async (req,res) => {
+
+    const municipios = await Municipio.findAll();
+    res.json({municipios});
+    
 }
-
 
 module.exports = {
     municipiosGet

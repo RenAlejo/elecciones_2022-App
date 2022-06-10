@@ -2,8 +2,8 @@ const  { DataTypes } = require('sequelize');
 const db = require('../db/connection');
 // import  { DataTypes } from 'sequelize';
 
-const Usuario = db.define('Usuario', {
-    user: {
+const Users = db.define('users', {
+    username: {
         type: DataTypes.STRING
     },
     password: {
@@ -23,4 +23,4 @@ const Usuario = db.define('Usuario', {
     }
 });
 
-module.exports = Usuario;
+module.exports = Users;

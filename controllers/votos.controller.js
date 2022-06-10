@@ -1,5 +1,7 @@
 
 
+const Voto = require('../models/voto.model');
+
 const votosPut = (req,res) => {
     res.json({
         msg:"put API"
@@ -7,10 +9,18 @@ const votosPut = (req,res) => {
 }
 
 
-const votosPost = (req,res) => {
+const votosPost = async (req,res) => {
+
+    const {...rest} = req.body;
+    const voto = new Voto({...rest});
+
+    // GUARDAR USUARIO 
+    await voto.save();
+
     res.json({
-        msg:"post API"
+        msg:"Formulario registrado correctamente",
     });
+
 }
 
 module.exports = {
