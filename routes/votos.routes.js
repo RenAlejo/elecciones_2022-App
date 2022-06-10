@@ -2,7 +2,8 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const router = Router();
 const { votosPut, 
-        votosPost } = require('../controllers/votos.controller')
+        votosPost } = require('../controllers/votos.controller');
+const { validateFields } = require('../middlewares/fields-validation');
 
 
 router.put('/',votosPut);
@@ -10,6 +11,8 @@ router.put('/',votosPut);
 router.post('/', [
         check('departamento', 'Departamento es un campo obligatorio').not().isEmpty(),
         check('municipio', 'Municipio es un campo obligatorio').not().isEmpty(),
+        check('codigo_dep', 'Codigo del Departamento es un obligatorio').not().isEmpty(),
+        check('codigo_mun', 'Codigo del municipio es un obligatorio').not().isEmpty(),
         check('zona', 'Zona es un campo obligatorio').not().isEmpty(),
         check('puesto', 'Puesto es un campo obligatorio').not().isEmpty(),
         check('mesa', 'Mesa es un campo obligatorio').not().isEmpty(),

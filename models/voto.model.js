@@ -8,6 +8,12 @@ const Voto = db.define('Voto', {
     municipio: {
         type: DataTypes.STRING
     },
+    codigo_dep: {
+        type: DataTypes.INTEGER
+    },
+    codigo_mun: {
+        type: DataTypes.INTEGER
+    },
     zona: {
         type: DataTypes.INTEGER
     },
