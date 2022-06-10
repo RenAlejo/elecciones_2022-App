@@ -1,6 +1,9 @@
+
 const express = require('express');
 const cors = require('cors');
-var corsWhiteList = ['http://testigoselectorales.com', 'http://localhost']
+const db = require('../db/connection');
+const corsWhiteList = ['http://testigoselectorales.com', 'http://localhost']
+
 
 class Server {
 
@@ -11,6 +14,7 @@ class Server {
         this.departamentosPath = '/api/departamentos'
         this.municipiosPath = '/api/municipios'
         this.votosPath = '/api/votos'
+        this.dbConnection();
         /**
          * Middlewares
         */
@@ -22,6 +26,16 @@ class Server {
 
         this.routes();
     }
+
+    async dbConnection() {
+        try {
+            await db.authenticate();
+            console.log('Conexión establecida con la base de datos');
+        } catch(err){
+            throw new Error ( err );
+        }
+    }
+
 
     middlewares() {
 
