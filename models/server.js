@@ -10,10 +10,15 @@ class Server {
     constructor() {
         this.app  = express();
         this.port = process.env.PORT;
-        this.usersPath = '/api/users';
-        this.departamentosPath = '/api/departamentos'
-        this.municipiosPath = '/api/municipios'
-        this.votosPath = '/api/votos'
+         
+        this.path = {
+            'authPath': '/api/auth',
+            'departamentosPath': '/api/departamentos', 
+            'municipiosPath': '/api/municipios', 
+            'votosPath': '/api/votos', 
+            'usersPath': '/api/users'
+        }
+
         this.dbConnection();
         /**
          * Middlewares
@@ -55,10 +60,11 @@ class Server {
 
     routes() {
 
-        this.app.use(this.usersPath, require('../routes/users.routes'))
-        this.app.use(this.departamentosPath, require('../routes/departamentos.routes'))
-        this.app.use(this.municipiosPath, require('../routes/municipios.routes'))
-        this.app.use(this.votosPath, require('../routes/votos.routes'))
+        this.app.use(this.path.authPath, require('../routes/auth.routes'))
+        this.app.use(this.path.departamentosPath, require('../routes/departamentos.routes'))
+        this.app.use(this.path.municipiosPath, require('../routes/municipios.routes'))
+        this.app.use(this.path.votosPath, require('../routes/votos.routes'))
+        this.app.use(this.path.usersPath, require('../routes/users.routes'))
 
     }
 
