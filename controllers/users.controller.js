@@ -3,11 +3,12 @@ const validator =  require('express-validator');
 
 const User = require('../models/user.model');
 
-const getUsers = async (req,res) => {
+// const getUsers = async (req,res) => {
 
-    const users = await User.findAll();
-    res.json({users});
-}
+//     const users = await User.findAll({limit:1});
+//     res.json({users});
+    
+// }
 
 
 const getUser = async (req,res) => {
@@ -25,13 +26,21 @@ const getUser = async (req,res) => {
 }
 
 
-const putUser = (req,res) => {
+const putUser = async (req,res) => {
 
     const { id } = req.params;
+    const { password, total_updates, last_login, ...rest } = req.body;
 
+    if( password ) {
+        const salt = bcryptjs.genSaltSync();
+        pass = bcryptjs.hashSync( password, salt );
+    }
+
+    const user =  await User.update({ departamento: rest.departamento, municipio: rest.municipio},{where: {id: id}});
+    
     res.json({
-        msg:"put API",
-        id
+        msg:"Usuario actualizado correctamente",
+        user
     });
 }
 

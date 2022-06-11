@@ -3,6 +3,7 @@
 const Municipio = require('../models/municipio.model');
 const User = require('../models/user.model');
 
+
 const isMunInDep = async(req, res) =>{
 
     const {codigo_mun,codigo_dep} = res.req.body;
@@ -15,7 +16,7 @@ const isMunInDep = async(req, res) =>{
 
 
 
-const userExist = async( username ) => {
+const userNameExist = async( username ) => {
 
     // VALIDAR SI EL REGISTRO EXISTE
     const user = await User.findOne({where: {username: username}}); 
@@ -26,7 +27,19 @@ const userExist = async( username ) => {
 
 }
 
+const userIdExist = async( id ) => {
+
+    // VALIDAR SI EL REGISTRO EXISTE
+    const user = await User.findByPk(id); 
+    
+    if( !user ) {
+        throw new Error(`El usuario no existe en la base de datos`);
+    }
+
+}
+
 module.exports = {
     isMunInDep,
-    userExist
+    userNameExist,
+    userIdExist
 }

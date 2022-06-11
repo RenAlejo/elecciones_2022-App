@@ -19,7 +19,7 @@ let formMesa = {
     "totalVotosMesa": 0
 }
 
-const sumJurado = (value) => {
+const sumJurado = value => {
 
     
     e11 = (value.desc == "e11") ? formJurado.e11 = value.value : 0;
@@ -51,7 +51,7 @@ const sumJurado = (value) => {
     }
 }
 
-const sumReg = (value) => {
+const sumReg = value => {
 
 
     rh = (value.desc == "rh") ? formReg.rh = value.value : 0;
@@ -75,7 +75,7 @@ const sumReg = (value) => {
     }
 }
 
-const sumMesa = (value) => {
+const sumMesa = value => {
 
     let mesaTotalValue = 0;
     formMesa.totalVotosMesa = value;
