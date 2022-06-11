@@ -10,8 +10,32 @@ const User = require('../models/user.model');
     
 // }
 
-
 const getUser = async (req,res) => {
+
+    const { username, password } = req.body;
+
+    console.log('USER NAME: ', username, 'PASSWORD: ', password);
+
+    let pass =  password;
+
+    if( password ) {
+        const salt = bcryptjs.genSaltSync();
+        pass = bcryptjs.hashSync( password, salt );
+    }
+
+    const user = await User.findOne({ where: { username: username, password: pass}});
+
+    if(!user){
+        res.status(400).json({
+            msg: `Credenciales invalidas`
+        })
+    }
+
+    res.json({user});
+}
+
+
+const getUserById = async (req,res) => {
 
     const { id } = req.params;
     const user = await User.findByPk( id );
@@ -65,8 +89,9 @@ const postUser = async (req,res) => {
 }
 
 module.exports = {
-    getUsers,
+    // getUsers,
     getUser,
+    getUserById,
     putUser,
     postUser
 }

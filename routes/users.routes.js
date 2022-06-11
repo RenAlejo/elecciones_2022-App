@@ -2,8 +2,9 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const router = Router();
 
-const { getUsers, 
-        getUser,
+const { //getUsers,
+        getUser, 
+        getUserById,
         putUser,
         postUser } = require('../controllers/users.controller')
 
