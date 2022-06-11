@@ -19,6 +19,12 @@ const validateJWT = async ( req , res , next) => {
 
         const user = await User.findOne( { attributes : {exclude: ['password']}, where:{id:uid}});
 
+        if (!user){
+            return res.status(401).json({
+                msg: "Token no valido - El usuario no existe en base de daots"
+            });
+        }
+
         req.uid = user;
         
         next();

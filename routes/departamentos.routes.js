@@ -3,6 +3,6 @@ const router = Router();
 const { departamentosGet } = require('../controllers/departamentos.controller')
 
 
-router.get('/',departamentosGet);
+router.get('/',validateJWT,departamentosGet);
 
 module.exports = router;
