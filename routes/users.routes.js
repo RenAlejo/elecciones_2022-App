@@ -7,15 +7,17 @@ const { //getUsers,
         putUser,
         postUser } = require('../controllers/users.controller')
 
+
 const { isFieldEmpty } = require('../middlewares/fields-validation');
-const { userNameExist, userIdExist } = require('../helpers/db-validators');
+const { isAdminRole } =  require('../middlewares/role-validation');
 const { validateJWT } = require('../middlewares/jwt-validation');
+const { userNameExist, userIdExist } = require('../helpers/db-validators');
 
 // router.get('/',getUsers);
 
-
 router.get('/:id', [
         validateJWT,
+        isAdminRole,
         check('id').custom(userIdExist),
         isFieldEmpty
 ],getUser);
@@ -23,6 +25,7 @@ router.get('/:id', [
 
 router.put('/:id',[
         validateJWT,
+        isAdminRole,
         check('id','El parametro ingresado no es válido').isInt(),
         check('id').custom(userIdExist),
         isFieldEmpty
@@ -31,6 +34,7 @@ router.put('/:id',[
 
 router.post('/', [
         validateJWT,
+        isAdminRole,
         check('username').custom(userNameExist),
         isFieldEmpty
 ],postUser);

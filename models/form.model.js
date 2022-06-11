@@ -1,7 +1,7 @@
 const  { DataTypes } = require('sequelize');
 const db = require('../db/connection');
 
-const Voto = db.define('Voto', {
+const Form = db.define('Voto', {
     departamento: {
         type: DataTypes.STRING
     },
@@ -55,4 +55,4 @@ const Voto = db.define('Voto', {
     }
 });
 
-module.exports = Voto;
+module.exports = Form;
