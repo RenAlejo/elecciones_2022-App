@@ -15,6 +15,9 @@ const Users = db.define('users', {
     municipio: {
         type: DataTypes.STRING
     },
+    profile_img: {
+        type: DataTypes.STRING
+    },
     rol: {
         type: DataTypes.STRING
     },

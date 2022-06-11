@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Layout - Mazer Admin Dashboard</title>
+    <title> Formulario - App Votaciones 2022</title>
     
     <link rel="stylesheet" href="assets/css/main/app.css">
     <link rel="stylesheet" href="assets/css/main/app-dark.css">
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/css/pages/form-element-select.css">
+    <script src="../js/formVotos.js"></script>
 </head>
 
 <body>
@@ -38,18 +39,9 @@
     <div class="sidebar-menu">
         <ul class="menu">
             <li class="sidebar-title">Menu</li>
-            
-            <li
-                class="sidebar-item  ">
-                <a href="index1.html" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Inicio</span>
-                </a>
-            </li>
-            
             <li
                 class="sidebar-item active ">
-                <a href="index.html" class='sidebar-link'>
+                <a href="form.html" class='sidebar-link'>
                     <i class="bi bi-file-earmark-medical-fill"></i>
                     <span>Formulario</span>
                 </a>
@@ -75,14 +67,12 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Formulario</li>
                     </ol>
                 </nav>
             </div>
         </div>
     </div>
-
     <!-- Basic Horizontal form layout section start -->
     <section id="basic-horizontal-layouts justify-content-center">
         <div class="row match-height">
@@ -90,35 +80,23 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <form id="formVotos" class="form form-horizontal">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4 form-group required">
                                             <label class="control-label">Departamento *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <select class="choices form-select">
-                                                <option value="square">Antioquia</option>
-                                                <option value="rectangle">Atlantico</option>
-                                                <option value="rombo">Bolivar</option>
-                                                <option value="romboid">Risaralda</option>
-                                                <option value="trapeze">Quindio</option>
-                                                <option value="traible">Sucre</option>
-                                                <option value="polygon">Huila</option>
+                                            <select id="departamentosSelect" required class="form-select" onchange="getMunicipios(this.value)">
+                                                <option value="0">  -   </option>
                                             </select>
                                         </div>
                                         <div class="col-md-4 form-group required">
                                             <label class="control-label">Municipio *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <select class="choices form-select">
-                                                <option value="square">Medellín</option>
-                                                <option value="rectangle">Alejandria</option>
-                                                <option value="rombo">Anorí</option>
-                                                <option value="romboid">Andes</option>
-                                                <option value="trapeze">Amaga</option>
-                                                <option value="traible">Abejorral</option>
-                                                <option value="polygon">Angelopolís</option>
+                                            <select id="municipiosSelect" required class="form-select" disabled onchange="">
+                                                <option value="square"> - </option>
                                             </select>
                                         </div>
 
@@ -126,7 +104,7 @@
                                             <label class="control-label">Zona *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required pattern="^[0-9]" min="0" id="zona-info" class="form-control" name="zona"
+                                            <input type="number" required pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="zona-info" class="form-control" name="zona"
                                                 placeholder="Zona">
                                         </div>
 
@@ -134,7 +112,7 @@
                                             <label class="control-label">Puesto *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required pattern="^[0-9]" min="0" id="puesto-info" class="form-control" name="puesto"
+                                            <input type="number" required pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="puesto-info" class="form-control" name="puesto"
                                                 placeholder="Puesto">
                                         </div>
 
@@ -142,7 +120,7 @@
                                             <label class="control-label">Mesa *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required pattern="^[0-9]" min="0" id="mesa-info" class="form-control" name="mesa"
+                                            <input type="number" required pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="mesa-info" class="form-control" name="mesa"
                                                 placeholder="Mesa">
                                         </div>
 
@@ -150,7 +128,7 @@
                                             <label class="control-label">Total Sufragantes Formato E-11 *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required onchange="sumJurado({'desc':'e11','value':this.value});" pattern="^[0-9]" min="0" id="sufragantese11-info" class="form-control" name="sufragantese11"
+                                            <input type="number" required onchange="sumJurado({'desc':'e11','value':this.value});" pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="sufragantese11-info" class="form-control" name="sufragantese11"
                                                 placeholder="Total Sufragantes Formato E-11">
                                         </div>
 
@@ -158,7 +136,7 @@
                                             <label class="control-label">Total Votos en la Urna *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required onchange="sumJurado({'desc':'votosurna','value':this.value});" pattern="^[0-9]" min="0" id="votosenurna-info" class="form-control" name="votosenurna"
+                                            <input type="number" required onchange="sumJurado({'desc':'votosurna','value':this.value});" pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="votosenurna-info" class="form-control" name="votosenurna"
                                                 placeholder="Total Votos en la Urna">
                                         </div>
 
@@ -166,7 +144,7 @@
                                             <label class="control-label">Total Votos Incinerados *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required onchange="sumJurado({'desc':'votosincinerados','value':this.value});" pattern="^[0-9]" min="0" id="votosincinerados-info" class="form-control" name="votosincinerados"
+                                            <input type="number" required onchange="sumJurado({'desc':'votosincinerados','value':this.value});" pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="votosincinerados-info" class="form-control" name="votosincinerados"
                                                 placeholder="Total Votos Incinerados">
                                         </div>
 
@@ -181,7 +159,7 @@
                                             <label class="control-label">Rodolfo Hernández *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required onchange="sumReg({'desc':'rh','value':this.value})" pattern="^[0-9]" min="0" id="rh-info" class="form-control" name="rh"
+                                            <input type="number" required onchange="sumReg({'desc':'rh','value':this.value})" pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="rh-info" class="form-control" name="rh"
                                                 placeholder="Liga Rodolfo Hernández">
                                         </div>
 
@@ -189,7 +167,7 @@
                                             <label class="control-label">Gustavo Petro *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required onchange="sumReg({'desc':'gp','value':this.value})" pattern="^[0-9]" min="0" id="gp-info" class="form-control" name="gp"
+                                            <input type="number" required onchange="sumReg({'desc':'gp','value':this.value})" pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="gp-info" class="form-control" name="gp"
                                                 placeholder="Liga Gustavo Petro">
                                         </div>
 
@@ -197,7 +175,7 @@
                                             <label class="control-label">Votos en Blanco *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required onchange="sumReg({'desc':'votoblanco','value':this.value})" pattern="^[0-9]" min="0" id="votosblanco-info" class="form-control" name="votosblanco"
+                                            <input type="number" required onchange="sumReg({'desc':'votoblanco','value':this.value})" pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="votosblanco-info" class="form-control" name="votosblanco"
                                                 placeholder="Votos en Blanco">
                                         </div>
 
@@ -205,7 +183,7 @@
                                             <label class="control-label">Votos Nulos *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required onchange="sumReg({'desc':'votonulo','value':this.value})" pattern="^[0-9]" min="0" id="votonulo-info" class="form-control" name="votonulo"
+                                            <input type="number" required onchange="sumReg({'desc':'votonulo','value':this.value})" pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="votonulo-info" class="form-control" name="votonulo"
                                                 placeholder="Votos Nulos">
                                         </div>
 
@@ -213,7 +191,7 @@
                                             <label class="control-label">Votos No Marcados *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required  onchange="sumReg({'desc':'votonomarcado','value':this.value})" pattern="^[0-9]" min="0" id="nomarcados-info" class="form-control" name="nomarcados"
+                                            <input type="number" required  onchange="sumReg({'desc':'votonomarcado','value':this.value})" pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="nomarcados-info" class="form-control" name="nomarcados"
                                                 placeholder="Votos No Marcados">
                                         </div>
 
@@ -228,9 +206,21 @@
                                             <label class="control-label">Total Votos en la Mesa *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required onchange="sumMesa(this.value)" pattern="^[0-9]" min="0" id="totalvotosmesa-info" class="form-control" name="nomarcados"
+                                            <input type="number" required onchange="sumMesa(this.value)" pattern="^[0-9]" min="0" max="12" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="totalvotosmesa-info" class="form-control" name="nomarcados"
                                                 placeholder="Total Votos en la Mesa">
                                         </div>
+
+                                                                               
+                                        <div class="col-md-4 form-group required">
+                                            <label class="control-label">Novedad Presentada *</label>
+                                        </div>
+
+                                        <div class="col-md-8 form-group">
+                                            <select id="departamentosSelect" required class="form-select" onchange="getMunicipios(this.value)">
+                                                <option value="0">  -   </option>
+                                            </select>
+                                        </div>
+
 
                                         <!-- btn-warning -->
                                         <div class="col-sm-12 d-flex justify-content-end p-3">
@@ -268,7 +258,6 @@
     </div>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/extensions/form-element-select.js"></script>
-    <script src="../js/formVotos.js"></script>
 </body>
 
 </html>

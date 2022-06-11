@@ -1,3 +1,8 @@
+const url = ( window.location.hostname.includes('localhost')) 
+            ? 'http://localhost:8181/api/'
+            : 'https://votaciones2022.herokuapp.com/api/';
+
+let token = localStorage.getItem('token') || '';
 
 
 let formJurado = {
@@ -18,6 +23,88 @@ let formReg = {
 let formMesa = {
     "totalVotosMesa": 0
 }
+
+let usuario = null;
+
+if(token.length <= 10) {
+    window.location = '/';
+    throw new Error("El token no es válido")
+}
+
+const validateJWT = async() => {
+
+    const resp = await fetch( url + 'auth', {
+        headers: {'Authorization': token}
+    });
+
+    const { user: userDB, token: tokenDB} = await resp.json();
+    localStorage.setItem('token', tokenDB)
+    
+    usuario = userDB;
+    token = tokenDB;
+
+}
+
+const main = async () => {
+    await validateJWT();
+}
+
+const getDepartamentos = async () => {
+
+    
+    const departamentos =  await fetch( url + 'departamentos', {
+        headers: {'Authorization': token}
+    })
+    
+    const { ...departamentosList } = await departamentos.json();
+    
+    const selectDepartamentos = document.querySelector('#departamentosSelect');
+
+    for ( let i in departamentosList.departamentos ) {
+        
+        let option = document.createElement('option');
+        option.value = departamentosList.departamentos[i].cod_dep;
+        option.text = departamentosList.departamentos[i].departamento;
+
+        selectDepartamentos.add(option);
+    }
+}
+const clearSelect = (select) => {
+    for (let i = select.options.length; i >= 0; i--) {
+        select.remove(i);
+    }
+};
+
+
+
+const getMunicipios = async(codep) => {
+
+    const municipios = await fetch( url + `municipios/${codep}`, {
+        headers: { Authorization: token}
+    })
+    
+    const { ...municipiosList } = await municipios.json();
+
+    let selectMunicipios = document.querySelector('#municipiosSelect');
+    selectMunicipios.disabled = false;
+    clearSelect(selectMunicipios);
+
+    if( parseInt(codep) === 0 ){
+        selectMunicipios.disabled = true;
+    }
+    
+    for ( let i in municipiosList.municipios ) {
+        
+        let option =  document.createElement('option');
+        option.value = municipiosList.municipios[i].codigo_mun;
+        option.text = municipiosList.municipios[i].municipio;
+        
+        selectMunicipios.add(option);
+        
+    }
+}
+
+
 
 const sumJurado = value => {
 
@@ -100,3 +187,6 @@ const sumMesa = value => {
     }
 
 }
+
+main();
+getDepartamentos()

@@ -38,7 +38,6 @@ const login = async (req,res) => {
         const token = await generateJWT( user.id );
 
         res.json({
-            msg: "Login Ok",
             user,
             token
         })
@@ -56,6 +55,21 @@ const login = async (req,res) => {
 }
 
 
+const generateToken = async  ( req, res ) => {
+    
+    const { ...user } =  req.uid.dataValues;
+    
+     // GENERO JWT
+     const token = await generateJWT( user.id );
+
+    res.json({
+        user,
+        token
+    });
+
+}
+
 module.exports = {
-    login
+    login,
+    generateToken
 }
