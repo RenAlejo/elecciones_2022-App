@@ -1,17 +1,15 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
+const router = Router();
 
 const { isFieldEmpty } = require('../middlewares/fields-validation');
+const { validateJWT } = require('../middlewares/jwt-validation');
 const { isMunInDep } = require('../helpers/db-validators');
 
-const { votosPut, 
-        votosPost } = require('../controllers/votos.controller');
-
-const router = Router();
-        
-router.put('/',votosPut);
+const { votosPost } = require('../controllers/votos.controller');
 
 router.post('/', [
+        validateJWT,
         check('departamento', 'Departamento es un campo obligatorio').not().isEmpty(),
         check('municipio', 'Municipio es un campo obligatorio').not().isEmpty(),
         check('codigo_dep', 'Codigo del Departamento es un obligatorio').not().isEmpty(),
