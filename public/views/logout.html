@@ -1,0 +1,11 @@
+<script>
+    let authToken = localStorage.getItem('token') || '';
+
+    if(authToken != '') {
+        localStorage.removeItem('token');
+        window.location = '/';
+    } else {
+        window.location = '/';
+    }
+
+</script>

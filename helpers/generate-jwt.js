@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const { USE } = require('sequelize/types/index-hints');
+const User = require('../models/user.model');
 
 const generateJWT = ( uid  = '' ) => {
 
@@ -20,6 +22,31 @@ const generateJWT = ( uid  = '' ) => {
 
 }
 
+
+const verifyToken = async ( token = ' ') => {
+    
+    try {
+
+        if ( token.length < 10 ) {
+            return null;
+        }
+
+        const { uid } =  jwt.verify( token,  process.env.SECRET_KEY);
+        const user = await User.findByPk(uid);
+
+        if( user ) {
+            return user;
+        } else{
+            return null;
+        }
+
+    } catch( err ) {
+        return null;
+    }
+
+}
+
 module.exports = {
-    generateJWT
+    generateJWT,
+    verifyToken
 }
