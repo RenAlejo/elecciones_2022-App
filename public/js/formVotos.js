@@ -105,6 +105,28 @@ const getMunicipios = async(codep) => {
 }
 
 
+const getTipologias = async () => {
+
+    const tipologias = await fetch(url + 'tipologia', {
+        headers: {Authorization: token}
+    })
+
+    const { ...tipologiasList } = await tipologias.json();
+
+    const selectTipologias = document.querySelector('#tipologiasSelect');
+
+    for ( let i in tipologiasList.tipologias) {
+
+        let option = document.createElement('option');
+        option.value = tipologiasList.tipologias[i].codigo_tipologia;
+        option.text = tipologiasList.tipologias[i].desc_tipologia;
+
+        selectTipologias.add(option);
+        
+    }
+
+}
+
 
 const sumJurado = value => {
 
@@ -189,4 +211,5 @@ const sumMesa = value => {
 }
 
 main();
-getDepartamentos()
+getDepartamentos();
+getTipologias();
