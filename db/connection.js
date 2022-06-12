@@ -5,7 +5,7 @@ const db = new Sequelize(process.env.DATABASE,process.env.DBUSER,process.env.DBP
     host: process.env.DBHOST,
     port: process.env.DBPORT,
     dialect: 'mysql',
-    loggin: false
+    logging: false
 });
 
 module.exports = db;

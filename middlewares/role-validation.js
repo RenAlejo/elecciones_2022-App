@@ -25,7 +25,7 @@ const isUserRole = ( req, res, next) => {
 
     if( !req.uid ) {
         return res.status(500).json({
-            msg: 'El rol no puede ser validado sin tener un token primero'
+            msg: 'El rol no puede ser validado sin token'
         })
     }
     

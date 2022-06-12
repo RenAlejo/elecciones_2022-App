@@ -1,3 +1,4 @@
+
 const Departamento = require('../models/departamento.model');
 
 
