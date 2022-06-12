@@ -15,6 +15,7 @@ class Server {
             'authPath': '/api/auth',
             'departamentosPath': '/api/departamentos', 
             'municipiosPath': '/api/municipios', 
+            'tipologiaPath': '/api/tipologia',
             'votosPath': '/api/form', 
             'usersPath': '/api/users'
         }
@@ -60,11 +61,12 @@ class Server {
 
     routes() {
 
-        this.app.use(this.path.authPath, require('../routes/auth.routes'))
-        this.app.use(this.path.departamentosPath, require('../routes/departamentos.routes'))
-        this.app.use(this.path.municipiosPath, require('../routes/municipios.routes'))
-        this.app.use(this.path.votosPath, require('../routes/form.routes'))
-        this.app.use(this.path.usersPath, require('../routes/users.routes'))
+        this.app.use(this.path.authPath, require('../routes/auth.routes'));
+        this.app.use(this.path.departamentosPath, require('../routes/departamentos.routes'));
+        this.app.use(this.path.municipiosPath, require('../routes/municipios.routes'));
+        this.app.use(this.path.tipologiaPath, require('../routes/tipologia.routes'));
+        this.app.use(this.path.votosPath, require('../routes/form.routes'));
+        this.app.use(this.path.usersPath, require('../routes/users.routes'));
 
     }
 
