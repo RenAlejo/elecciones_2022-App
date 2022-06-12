@@ -2,12 +2,6 @@ const  { DataTypes } = require('sequelize');
 const db = require('../db/connection');
 
 const Form = db.define('votos', {
-    departamento: {
-        type: DataTypes.STRING
-    },
-    municipio: {
-        type: DataTypes.STRING
-    },
     codigo_dep: {
         type: DataTypes.INTEGER
     },

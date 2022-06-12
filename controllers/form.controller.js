@@ -13,7 +13,6 @@ const formPost = async (req,res) => {
     await form.save();
 
     res.json({
-        msg:"Formulario registrado correctamente",
         userinfo
     });
 
