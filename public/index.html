@@ -12,7 +12,7 @@
 		
 		let authToken = localStorage.getItem('token') || '';
 
-		if(authToken !== ''){
+		if(authToken.length >= 30 && authToken !== ''){
 			window.location = '/views/form.html';
 		}
 
