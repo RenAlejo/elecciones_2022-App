@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { USE } = require('sequelize/types/index-hints');
 const User = require('../models/user.model');
 
 const generateJWT = ( uid  = '' ) => {
