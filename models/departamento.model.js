@@ -1,7 +1,7 @@
 const  { DataTypes } = require('sequelize');
 const db = require('../db/connection');
 
-const Departamento = db.define('Departamento', {
+const Departamento = db.define('departamentos', {
     departamento: {
         type: DataTypes.STRING
     },
