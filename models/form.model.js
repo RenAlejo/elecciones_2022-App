@@ -1,7 +1,7 @@
 const  { DataTypes } = require('sequelize');
 const db = require('../db/connection');
 
-const Form = db.define('Voto', {
+const Form = db.define('votos', {
     departamento: {
         type: DataTypes.STRING
     },
