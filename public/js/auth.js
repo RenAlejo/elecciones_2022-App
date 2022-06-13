@@ -35,7 +35,7 @@ signInForm.addEventListener('submit', ev => {
                 headers: { 'Content-Type': 'application/json' }
             })
             .then( res => res.json())
-            .then( ({msg,token}) => {
+            .then( ({msg,user,token}) => {
         
                 if( msg ){
                     divErrors.innerHTML = `<div class="alert alert-danger"><i class="bi bi-exclamation-circle"></i> ${msg} </div>`;
@@ -45,7 +45,7 @@ signInForm.addEventListener('submit', ev => {
                     document.getElementById('password').classList.add('is-invalid');
                     return console.error( msg )
                 }
-        
+                
                 localStorage.setItem('token', token);
                 window.location = '/views/form.html';
         

@@ -66,18 +66,26 @@ const getDepartamentos = async () => {
         headers: {'Authorization': token}
     })
     
-    const { ...departamentosList } = await departamentos.json();
-    
+    const { ...res } = await departamentos.json();
     const selectDepartamentos = document.querySelector('#departamentosSelect');
 
-    for ( let i in departamentosList.departamentos ) {
+    for ( let i in res.departamentos ) {
         
         let option = document.createElement('option');
-        option.value = departamentosList.departamentos[i].cod_dep;
-        option.text = departamentosList.departamentos[i].departamento;
+        option.value = res.departamentos[i].cod_dep;
+        option.text = res.departamentos[i].departamento;
 
         selectDepartamentos.add(option);
     }
+
+    if ( res.user.departamento != '' && res.user.municipio != '') {
+
+        selectDepartamentos.value = res.user.departamento;
+        getMunicipios(res.user.departamento, res.user.municipio);
+        
+    }
+
+
 }
 
 
@@ -88,7 +96,7 @@ const clearSelect = (select) => {
 };
 
 
-const getMunicipios = async(codep) => {
+const getMunicipios = async(codep, ...rest) => {
 
     const municipios = await fetch( url + `municipios/${codep}`, {
         headers: { Authorization: token}
@@ -96,7 +104,7 @@ const getMunicipios = async(codep) => {
     
     const { ...municipiosList } = await municipios.json();
 
-    let selectMunicipios = document.querySelector('#municipiosSelect');
+    const selectMunicipios = document.querySelector('#municipiosSelect');
     selectMunicipios.disabled = false;
     clearSelect(selectMunicipios);
 
@@ -113,6 +121,11 @@ const getMunicipios = async(codep) => {
         selectMunicipios.add(option);
         
     }
+
+    if(rest.length > 0) {
+        selectMunicipios.value = rest[0];
+    }
+
 }
 
 

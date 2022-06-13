@@ -39,6 +39,8 @@ const login = async (req,res) => {
 
         console.log('Usuario conectado: ', user.username);
 
+        console.log('user: ', user);
+        
         res.json({
             user,
             token
