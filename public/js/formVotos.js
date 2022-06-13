@@ -26,7 +26,7 @@ let formMesa = {
 let userInfo = null;
 
 if(token.length <= 10) {
-    window.location = '/';
+    window.location = '/logout.html';
     throw new Error("El token no es válido")
 }
 
