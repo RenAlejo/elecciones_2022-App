@@ -159,10 +159,10 @@ const sumJurado = value => {
 
     let totalValue = 0;
 
-    if(formJurado.e11 != 0 && parseInt(formJurado.votosUrna) + parseInt(formJurado.votosIncinerados) != 0) {
+    if(formJurado.e11 != 0 && parseInt(formJurado.votosUrna) - parseInt(formJurado.votosIncinerados) != 0) {
 
         let divWarning = document.getElementById("juradodiferencia");
-        totalValue = (parseInt(formJurado.votosUrna) + parseInt(formJurado.votosIncinerados)) - parseInt(formJurado.e11);
+        totalValue = (parseInt(formJurado.votosUrna) - parseInt(formJurado.votosIncinerados)) - parseInt(formJurado.e11);
 
         if(totalValue < 0) {
             totalValue = totalValue * -1;
