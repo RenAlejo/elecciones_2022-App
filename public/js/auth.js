@@ -47,7 +47,7 @@ signInForm.addEventListener('submit', ev => {
                 }
                 
                 localStorage.setItem('token', token);
-                window.location = '/views/form.html';
+                window.location = '/views/';
         
             })
             .catch( err => {

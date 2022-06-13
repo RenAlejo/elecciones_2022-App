@@ -4,12 +4,6 @@ const url = ( window.location.hostname.includes('localhost'))
 
 let token = localStorage.getItem('token') || '';
 
-if(token.length <= 10) {
-    window.location = '/';
-    throw new Error("El token no es válido")
-}
-
-
 let formJurado = {
     "e11": 0,
     "votosUrna": 0,
@@ -31,6 +25,10 @@ let formMesa = {
 
 let userInfo = null;
 
+if(token.length <= 10) {
+    window.location = '/';
+    throw new Error("El token no es válido")
+}
 
 const validateJWT = async() => {
     

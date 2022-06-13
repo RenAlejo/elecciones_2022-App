@@ -72,21 +72,21 @@ votosForm.addEventListener('submit', ev => {
                 btnJuradoDiferencia.classList.add('btn-success');
                 
 
-                for(let el of votosForm.elements) {
+                for(let element of votosForm.elements) {
                     
-                    if ( el.name.length > 0 && el.name != 'codigo_dep' && el.name != 'codigo_mun') {
-                        el.value = '';
-                        el.classList.remove('is-invalid');
+                    if ( element.name.length > 0 && element.name != 'codigo_dep' && element.name != 'codigo_mun') {
+                        element.value = '';
+                        element.classList.remove('is-invalid');
                     }
 
-                    if ( el.name == 'codigo_dep' && msg.userinfo.departamento != '') {
-                        el.value =  msg.userinfo.departamento;
-                        el.classList.remove('is-invalid');
+                    if ( element.name == 'codigo_dep' && msg.userinfo.departamento != '') {
+                        element.value =  msg.userinfo.departamento;
+                        element.classList.remove('is-invalid');
                     }
 
-                    if ( el.name == 'codigo_mun' && msg.userinfo.municipio != '') {
-                        el.value =  msg.userinfo.municipio;
-                        el.classList.remove('is-invalid');
+                    if ( element.name == 'codigo_mun' && msg.userinfo.municipio != '') {
+                        element.value =  msg.userinfo.municipio;
+                        element.classList.remove('is-invalid');
                     }
 
                 }
