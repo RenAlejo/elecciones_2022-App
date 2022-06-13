@@ -34,11 +34,11 @@ const validateJWT = async() => {
     
     try {
 
-        const resp = await fetch( url + 'auth', {
+        const res = await fetch( url + 'auth', {
             headers: {'Authorization': token}
         });
     
-        const { user: userDB, token: tokenDB} = await resp.json();
+        const { user: userDB, token: tokenDB} = await res.json();
         localStorage.setItem('token', tokenDB)
         
         userInfo = userDB;
