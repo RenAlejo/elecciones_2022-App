@@ -7,6 +7,9 @@ const formPost = async (req,res) => {
 
     const {...rest} = req.body;
     const {...userinfo }  =  req.uid.dataValues;
+    
+    rest.createdBy = userinfo.username;
+
     const form = new Form({...rest});
 
     // GUARDAR FORMULARIO 
@@ -24,7 +27,7 @@ const formPost = async (req,res) => {
     }
 
     res.json({
-        userinfo
+        userinfo,
     });
 
 }

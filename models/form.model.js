@@ -46,6 +46,9 @@ const Form = db.define('votos', {
     },
     novedad_presentada: {
         type: DataTypes.INTEGER
+    },
+    createdBy: {
+        type: DataTypes.STRING
     }
 });
 
