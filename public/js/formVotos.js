@@ -25,38 +25,6 @@ let formMesa = {
 
 let userInfo = null;
 
-if(token.length <= 10) {
-    window.location = '/logout.html';
-    throw new Error("El token no es válido")
-}
-
-const validateJWT = async() => {
-    
-    try {
-
-        const res = await fetch( url + 'auth', {
-            headers: {'Authorization': token}
-        });
-    
-        const { user: userDB, token: tokenDB} = await res.json();
-        localStorage.setItem('token', tokenDB)
-        
-        userInfo = userDB;
-        token = tokenDB;
-
-    } catch(err) {
-
-        window.location = '/';
-        console.log(err);
-
-    }
-
-}
-
-const main = async () => {
-    await validateJWT();
-}
-
 
 const getDepartamentos = async () => {
     
@@ -232,6 +200,5 @@ const sumMesa = value => {
 
 }
 
-main();
 getDepartamentos();
 getTipologias();
