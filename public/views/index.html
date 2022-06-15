@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
     <link rel="stylesheet" href="assets/css/pages/form-element-select.css">
     <script src="../js/formVotos.min.js"></script>
-    <script src="../js/validateJWT.js"></script>
+    <script src="../js/utilities.js"></script>
 </head>
 
 <body>
@@ -138,7 +138,7 @@
                                             <label class="control-label">Total Sufragantes Formato E-11 *</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" required onchange="sumJurado({'desc':'e11','value':this.value});" pattern="^[0-9]" min="0" max="20000" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="ssufragantes_formatoe11" class="form-control" name="sufragantes_formatoe11"
+                                            <input type="number" required onchange="sumJurado({'desc':'e11','value':this.value});" pattern="^[0-9]" min="0" max="20000" maxlength="5" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="sufragantes_formatoe11" class="form-control" name="sufragantes_formatoe11"
                                                 placeholder="Total Sufragantes Formato E-11">
                                         </div>
 

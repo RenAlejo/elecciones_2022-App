@@ -30,5 +30,4 @@ router.post('/', [
         isFieldEmpty
 ],formPost);
 
-
 module.exports = router;

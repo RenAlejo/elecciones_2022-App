@@ -22,6 +22,8 @@ votosForm.addEventListener('submit', ev => {
 
     sendFormButton.innerHTML = 'Enviando Formulario <div class="spinner-grow spinner-grow-sm justify-content-md-right" role="status"><span class="visually-hidden"></span></div>';
     
+    console.log('formdata: ', formData);
+    
     setTimeout(() => {
         
         sendFormButton.innerHTML = 'Validando Información <div class="spinner-grow spinner-grow-sm justify-content-md-right" role="status"><span class="visually-hidden"></span></div>';

@@ -12,7 +12,7 @@ const formPost = async (req,res) => {
 
     const form = new Form({...rest});
 
-    // GUARDAR FORMULARIO 
+    // GUARDAR FORMULARIO
     await form.save();
 
     if( userinfo.departamento == '' && userinfo.municipio == '' || rest.codigo_dep != userinfo.departamento || rest.codigo_mun != userinfo.municipio  ){
