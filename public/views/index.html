@@ -220,6 +220,13 @@
                                                 placeholder="Total Votos en la Mesa">
                                         </div>
 
+                                        <!-- btn-warning -->
+                                        <div class="col-sm-12 d-flex justify-content-end p-3">
+                                            <button type="button" id="mesadiferencia" class="btn btn-success justify-content-end">
+                                                Diferencia <span id="diferenciaVotosMesa" class="badge bg-transparent">0</span>
+                                            </button>
+                                        </div>
+
                                                                                
                                         <div class="col-md-4 form-group required">
                                             <label class="control-label">Novedad Presentada *</label>
@@ -231,16 +238,10 @@
                                             </select>
                                         </div>
 
-
-                                        <!-- btn-warning -->
-                                        <div class="col-sm-12 d-flex justify-content-end p-3">
-                                            <button type="button" id="mesadiferencia" class="btn btn-success justify-content-end">
-                                                Diferencia <span id="diferenciaVotosMesa" class="badge bg-transparent">0</span>
-                                            </button>
-                                        </div>
-
                                         <div id="errors"></div>
                                         
+                                        <div class="col-md-4 form-group p-4"> </div>
+
                                         <div class="col-md-12 d-flex justify-content-end">
                                             <button id="sendformbutton" type="submit" class="btn btn-primary btn-lg btn-block">Enviar Formulario</button>
                                         </div>
