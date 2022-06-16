@@ -105,6 +105,12 @@ const getTipologias = async () => {
 
     const selectTipologias = document.querySelector('#tipologiasSelect');
 
+    let option = document.createElement('option');
+    option.value = 0;
+    option.text = ' - ';
+
+    selectTipologias.add(option);
+
     for ( let i in tipologiasList.tipologias) {
 
         let option = document.createElement('option');

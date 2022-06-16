@@ -7,9 +7,12 @@ const btnMesaDiferencia = document.querySelector('#mesadiferencia');
 const btnJuradoDiferencia = document.querySelector('#juradodiferencia');
 const divDiferenciaVotosMesa = document.querySelector("#diferenciaVotosMesa");
 
-votosForm.addEventListener('submit', ev => {
 
+
+votosForm.addEventListener('submit', ev => {
+    
     ev.preventDefault();
+    sendFormButton.disabled = true
 
     const formData = {};
     
@@ -21,8 +24,6 @@ votosForm.addEventListener('submit', ev => {
     }
 
     sendFormButton.innerHTML = 'Enviando Formulario <div class="spinner-grow spinner-grow-sm justify-content-md-right" role="status"><span class="visually-hidden"></span></div>';
-    
-    console.log('formdata: ', formData);
     
     setTimeout(() => {
         
@@ -36,7 +37,7 @@ votosForm.addEventListener('submit', ev => {
             })
             .then( res => res.json())
             .then( msg => {
-
+                    
                 if( msg.errors ){
 
                     for ( let i in msg.errors) {
@@ -93,6 +94,8 @@ votosForm.addEventListener('submit', ev => {
 
                 }
 
+
+
                 formJurado = {
                     "e11": 0,
                     "votosUrna": 0,
@@ -110,17 +113,20 @@ votosForm.addEventListener('submit', ev => {
                     "totalVotosMesa": 0
                 }
 
+                sendFormButton.disabled = false
+                
                 setTimeout(()=>{
                     divErrors.innerHTML = '';
                 },2500);
-    
+                
             })
             .catch( err => {
                 console.log(err);
             });
-
+            
         }, 1000)
-
+        
     },1000);
+    
 
 });
