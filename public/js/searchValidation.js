@@ -87,8 +87,6 @@ formSearchVotos.addEventListener('submit', ev => {
                             <button id="borrar" onClick="deleteEntry(this)" class="bi bi-trash" style="padding: 2px; margin-left: 10px; background: none; border: 0; color:brown; cursor: pointer;" alt="editar"></button>
                         </td>
                     </tr>`;
-            
-            
             }
 
             

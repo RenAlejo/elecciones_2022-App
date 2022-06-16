@@ -62,7 +62,7 @@ const clearSelect = (select) => {
 };
 
 
-const getMunicipios = async(codep, ...rest) => {
+const getMunicipios = async (codep, ...rest) => {
 
     const municipios = await fetch( url + `municipios/${codep}`, {
         headers: { Authorization: token}

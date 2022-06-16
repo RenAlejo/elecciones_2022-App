@@ -33,13 +33,12 @@ const isUserRole = ( req, res, next) => {
     
     if ( rol !== 'user' && rol !== 'administrator') {
         
-        console.log('Entro 2');
         return res.status(400).json({
             msg: "Permisos insuficientes"
         });
     }
 
-    next()
+    next();
 
 }
 

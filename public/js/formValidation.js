@@ -53,7 +53,8 @@ votosForm.addEventListener('submit', ev => {
                         if(divId == 'codigo_dep') {
                             divId = 'departamentosSelect';
                         }
-    
+                        
+                        sendFormButton.disabled = false
                         document.getElementById(divId).classList.add('is-invalid');
                     }
                     
@@ -115,6 +116,12 @@ votosForm.addEventListener('submit', ev => {
 
                 sendFormButton.disabled = false
                 
+                window.scroll({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+
                 setTimeout(()=>{
                     divErrors.innerHTML = '';
                 },2500);
