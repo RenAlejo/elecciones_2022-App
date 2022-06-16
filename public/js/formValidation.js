@@ -6,7 +6,7 @@ const divTotalVotosReg = document.querySelector("#totalVotosReg");
 const btnMesaDiferencia = document.querySelector('#mesadiferencia');
 const btnJuradoDiferencia = document.querySelector('#juradodiferencia');
 const divDiferenciaVotosMesa = document.querySelector("#diferenciaVotosMesa");
-
+const inputZona = document.querySelector('#zona-info');
 
 
 votosForm.addEventListener('submit', ev => {
@@ -96,7 +96,6 @@ votosForm.addEventListener('submit', ev => {
                 }
 
 
-
                 formJurado = {
                     "e11": 0,
                     "votosUrna": 0,
@@ -122,6 +121,8 @@ votosForm.addEventListener('submit', ev => {
                     behavior: 'smooth'
                 });
 
+                inputZona.focus();
+                
                 setTimeout(()=>{
                     divErrors.innerHTML = '';
                 },2500);
