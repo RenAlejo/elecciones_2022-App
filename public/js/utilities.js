@@ -200,7 +200,7 @@ const restoreEntry = ( value, ...rest ) => {
         
         if(id == 'accion') {
             element.innerHTML = `<button id="editar" onClick="editEntry(this)" class="bi bi-pencil" style="padding: 2px; background: none; border: 0; color:green; cursor: pointer;" alt="editar" value="enviar"></button>
-            <button id="borrar" onClick="deleteEntry()" class="bi bi-trash" style="padding: 2px; margin-left: 10px; background: none; border: 0; color:brown; cursor: pointer;" alt="editar"></button>`;
+            <button id="borrar" onClick="deleteEntry(this)" class="bi bi-trash" style="padding: 2px; margin-left: 10px; background: none; border: 0; color:brown; cursor: pointer;" alt="editar"></button>`;
         }
     }
 }

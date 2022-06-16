@@ -2,14 +2,14 @@ const url = ( window.location.hostname.includes('localhost'))
             ? 'http://localhost:8181/api/'
             : 'https://votaciones2022.herokuapp.com/api/';
 
-let token = localStorage.getItem('token') || '';
+const path =  location.href.split('/');
 
+let token = localStorage.getItem('token') || '';
 let formJurado = {
     "e11": 0,
     "votosUrna": 0,
     "votosIncinerados": 0
 }
-
 let formReg = {
     "rh": 0,
     "gp": 0,
@@ -18,11 +18,9 @@ let formReg = {
     "votonomarcado": 0,
     "totalVotos": 0,
 }
-
 let formMesa = {
     "totalVotosMesa": 0
 }
-
 let userInfo = null;
 
 
@@ -44,7 +42,7 @@ const getDepartamentos = async () => {
         selectDepartamentos.add(option);
     }
 
-    if ( res.user.departamento != '' && res.user.municipio != '') {
+    if ( res.user.departamento != '' && res.user.municipio != '' && path[ path.length - 1] !== 'edit.html') {
 
         selectDepartamentos.value = res.user.departamento;
         getMunicipios(res.user.departamento, res.user.municipio);
@@ -87,6 +85,7 @@ const getMunicipios = async (codep, ...rest) => {
         selectMunicipios.add(option);
         
     }
+
 
     if(rest.length > 0) {
         selectMunicipios.value = rest[0];
