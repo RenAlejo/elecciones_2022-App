@@ -122,7 +122,7 @@ votosForm.addEventListener('submit', ev => {
                 });
 
                 inputZona.focus();
-                
+
                 setTimeout(()=>{
                     divErrors.innerHTML = '';
                 },2500);

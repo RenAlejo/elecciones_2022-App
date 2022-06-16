@@ -48,6 +48,10 @@ formSearchVotos.addEventListener('submit', ev => {
                 return;
             }
 
+            let script = document.createElement('script');
+            script.id = 'simpleDatatables';
+            script.src = 'assets/js/extensions/simple-datatables.js';
+            document.body.appendChild(script);
 
             if( msg.errors ){
 
@@ -89,11 +93,6 @@ formSearchVotos.addEventListener('submit', ev => {
                     </tr>`;
             }
 
-            
-            let script = document.createElement('script');
-            script.id = 'simpleDatatables';
-            script.src = 'assets/js/extensions/simple-datatables.js';
-            document.body.appendChild(script);
 
             votosTable.innerHTML = tableHTML;
 
