@@ -16,7 +16,7 @@ const isMunInDep = async(req, res) =>{
 
 
 
-const userNameExist = async( username ) => {
+const userNameExist = async username => {
 
     // VALIDAR SI EL REGISTRO EXISTE
     const user = await User.findOne({where: {username: username}}); 
@@ -27,7 +27,7 @@ const userNameExist = async( username ) => {
 
 }
 
-const userIdExist = async( id ) => {
+const userIdExist = async id  => {
 
     // VALIDAR SI EL REGISTRO EXISTE
     const user = await User.findByPk(id); 

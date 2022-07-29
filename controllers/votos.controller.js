@@ -28,7 +28,7 @@ const votosGet = async (req, res) => {
 
     const votos = await Votos.findAll({ 
         where: query,
-        limit: 100
+        limit: 50
     });
 
     if(!votos) {
